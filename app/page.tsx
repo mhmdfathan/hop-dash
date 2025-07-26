@@ -128,7 +128,7 @@ export default function AntiGamblingDashboard() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <Shield className="w-8 h-8 text-blue-600" />
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Dashboard Anti-Judi Online</h1>
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">HOP! Dashboard</h1>
             </div>
             <div className="flex items-center space-x-4">
               <button className="flex items-center space-x-2 px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700">
