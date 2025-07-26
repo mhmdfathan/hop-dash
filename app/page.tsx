@@ -27,8 +27,25 @@ import {
   Settings,
   RefreshCw,
   Calendar,
-  Filter
+  Filter,
+  LucideIcon
 } from 'lucide-react';
+
+// Type definitions
+interface StatCardProps {
+  title: string;
+  value: string;
+  subtitle?: string;
+  icon: LucideIcon;
+  trend?: string;
+  color?: 'blue' | 'red' | 'green' | 'yellow';
+}
+
+interface ChartCardProps {
+  title: string;
+  children: React.ReactNode;
+  className?: string;
+}
 
 // Mock data for fraud detection dashboard
 const fraudOverTimeData = [
@@ -61,8 +78,8 @@ const recentAlerts = [
   { id: 4, type: 'Location Anomaly', amount: '$4,500', time: '12 min ago', risk: 'medium' },
 ];
 
-function StatCard({ title, value, subtitle, icon: Icon, trend, color = 'blue' }) {
-  const colorClasses = {
+function StatCard({ title, value, subtitle, icon: Icon, trend, color = 'blue' }: StatCardProps) {
+  const colorClasses: Record<StatCardProps['color'] & string, string> = {
     blue: 'bg-blue-500',
     red: 'bg-red-500',
     green: 'bg-green-500',
@@ -93,7 +110,7 @@ function StatCard({ title, value, subtitle, icon: Icon, trend, color = 'blue' })
   );
 }
 
-function ChartCard({ title, children, className = '' }) {
+function ChartCard({ title, children, className = '' }: ChartCardProps) {
   return (
     <div className={`bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 ${className}`}>
       <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{title}</h3>
