@@ -47,35 +47,35 @@ interface ChartCardProps {
   className?: string;
 }
 
-// Mock data for fraud detection dashboard
-const fraudOverTimeData = [
-  { time: '00:00', fraudulent: 12, legitimate: 145, amount: 2400 },
-  { time: '04:00', fraudulent: 8, legitimate: 89, amount: 1890 },
-  { time: '08:00', fraudulent: 23, legitimate: 234, amount: 4500 },
-  { time: '12:00', fraudulent: 35, legitimate: 456, amount: 7800 },
-  { time: '16:00', fraudulent: 28, legitimate: 334, amount: 6200 },
-  { time: '20:00', fraudulent: 19, legitimate: 267, amount: 4100 },
+// Data untuk dashboard anti-judi online
+const gamblingOverTimeData = [
+  { time: '00:00', gambling: 12, normal: 145, amount: 2400 },
+  { time: '04:00', gambling: 8, normal: 89, amount: 1890 },
+  { time: '08:00', gambling: 23, normal: 234, amount: 4500 },
+  { time: '12:00', gambling: 35, normal: 456, amount: 7800 },
+  { time: '16:00', gambling: 28, normal: 334, amount: 6200 },
+  { time: '20:00', gambling: 19, normal: 267, amount: 4100 },
 ];
 
 const transactionAmountData = [
-  { range: '$0-100', count: 45, fraud: 3 },
-  { range: '$100-500', count: 78, fraud: 8 },
-  { range: '$500-1K', count: 56, fraud: 12 },
-  { range: '$1K-5K', count: 34, fraud: 18 },
-  { range: '$5K+', count: 12, fraud: 9 },
+  { range: 'Rp0-500K', count: 45, gambling: 3 },
+  { range: 'Rp500K-2.5M', count: 78, gambling: 8 },
+  { range: 'Rp2.5M-5M', count: 56, gambling: 12 },
+  { range: 'Rp5M-25M', count: 34, gambling: 18 },
+  { range: 'Rp25M+', count: 12, gambling: 9 },
 ];
 
 const riskScoreData = [
-  { name: 'Low Risk', value: 65, color: '#10B981' },
-  { name: 'Medium Risk', value: 25, color: '#F59E0B' },
-  { name: 'High Risk', value: 10, color: '#EF4444' },
+  { name: 'Risiko Rendah', value: 65, color: '#10B981' },
+  { name: 'Risiko Sedang', value: 25, color: '#F59E0B' },
+  { name: 'Risiko Tinggi', value: 10, color: '#EF4444' },
 ];
 
 const recentAlerts = [
-  { id: 1, type: 'High Amount', amount: '$15,000', time: '2 min ago', risk: 'high' },
-  { id: 2, type: 'Unusual Time', amount: '$2,300', time: '5 min ago', risk: 'medium' },
-  { id: 3, type: 'Rapid Transactions', amount: '$890', time: '8 min ago', risk: 'high' },
-  { id: 4, type: 'Location Anomaly', amount: '$4,500', time: '12 min ago', risk: 'medium' },
+  { id: 1, type: 'Transaksi Besar', amount: 'Rp75.000.000', time: '2 menit lalu', risk: 'high' },
+  { id: 2, type: 'Waktu Tidak Wajar', amount: 'Rp11.500.000', time: '5 menit lalu', risk: 'medium' },
+  { id: 3, type: 'Transaksi Berulang', amount: 'Rp4.450.000', time: '8 menit lalu', risk: 'high' },
+  { id: 4, type: 'Pola Mencurigakan', amount: 'Rp22.500.000', time: '12 menit lalu', risk: 'medium' },
 ];
 
 function StatCard({ title, value, subtitle, icon: Icon, trend, color = 'blue' }: StatCardProps) {
@@ -119,7 +119,7 @@ function ChartCard({ title, children, className = '' }: ChartCardProps) {
   );
 }
 
-export default function FraudDashboard() {
+export default function AntiGamblingDashboard() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
@@ -128,12 +128,12 @@ export default function FraudDashboard() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <Shield className="w-8 h-8 text-blue-600" />
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">HOP Dashboard</h1>
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Dashboard Anti-Judi Online</h1>
             </div>
             <div className="flex items-center space-x-4">
               <button className="flex items-center space-x-2 px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700">
                 <Calendar className="w-4 h-4" />
-                <span>Last 24h</span>
+                <span>24 Jam Terakhir</span>
               </button>
               <button className="flex items-center space-x-2 px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700">
                 <Filter className="w-4 h-4" />
@@ -151,46 +151,46 @@ export default function FraudDashboard() {
       </header>
 
       <div className="p-6">
-        {/* Stats Cards */}
+        {/* Kartu Statistik */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <StatCard
-            title="Total Transactions"
-            value="1,247"
-            subtitle="Last 24 hours"
+            title="Total Transaksi"
+            value="1.247"
+            subtitle="24 jam terakhir"
             icon={Activity}
-            trend="+12% from yesterday"
+            trend="+12% dari kemarin"
             color="blue"
           />
           <StatCard
-            title="Fraud Detected"
+            title="Judi Terdeteksi"
             value="125"
-            subtitle="10.02% fraud rate"
+            subtitle="10,02% tingkat judi"
             icon={AlertTriangle}
-            trend="+5% from yesterday"
+            trend="+5% dari kemarin"
             color="red"
           />
           <StatCard
-            title="Amount at Risk"
-            value="$47,830"
-            subtitle="Flagged transactions"
+            title="Jumlah Berisiko"
+            value="Rp239.150.000"
+            subtitle="Transaksi ditandai"
             icon={DollarSign}
             color="yellow"
           />
           <StatCard
-            title="Response Time"
-            value="1.2s"
-            subtitle="Avg detection time"
+            title="Waktu Respons"
+            value="1,2 detik"
+            subtitle="Rata-rata deteksi"
             icon={Clock}
-            trend="-0.3s improvement"
+            trend="-0,3 detik perbaikan"
             color="green"
           />
         </div>
 
-        {/* Charts Row 1 */}
+        {/* Baris Chart 1 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <ChartCard title="Fraud Detection Over Time">
+          <ChartCard title="Deteksi Judi Online Sepanjang Waktu">
             <ResponsiveContainer width="100%" height={300}>
-              <AreaChart data={fraudOverTimeData}>
+              <AreaChart data={gamblingOverTimeData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="time" />
                 <YAxis />
@@ -203,7 +203,7 @@ export default function FraudDashboard() {
                 />
                 <Area 
                   type="monotone" 
-                  dataKey="legitimate" 
+                  dataKey="normal" 
                   stackId="1" 
                   stroke="#10B981" 
                   fill="#10B981" 
@@ -211,7 +211,7 @@ export default function FraudDashboard() {
                 />
                 <Area 
                   type="monotone" 
-                  dataKey="fraudulent" 
+                  dataKey="gambling" 
                   stackId="1" 
                   stroke="#EF4444" 
                   fill="#EF4444" 
@@ -221,23 +221,23 @@ export default function FraudDashboard() {
             </ResponsiveContainer>
           </ChartCard>
 
-          <ChartCard title="Transaction Amount Analysis">
+          <ChartCard title="Analisis Jumlah Transaksi">
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={transactionAmountData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="range" />
                 <YAxis />
                 <Tooltip />
-                <Bar dataKey="count" fill="#3B82F6" name="Total Transactions" />
-                <Bar dataKey="fraud" fill="#EF4444" name="Fraudulent" />
+                <Bar dataKey="count" fill="#3B82F6" name="Total Transaksi" />
+                <Bar dataKey="gambling" fill="#EF4444" name="Judi Online" />
               </BarChart>
             </ResponsiveContainer>
           </ChartCard>
         </div>
 
-        {/* Charts Row 2 */}
+        {/* Baris Chart 2 */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          <ChartCard title="Risk Score Distribution">
+          <ChartCard title="Distribusi Skor Risiko">
             <ResponsiveContainer width="100%" height={250}>
               <PieChart>
                 <Pie
@@ -272,7 +272,7 @@ export default function FraudDashboard() {
             </div>
           </ChartCard>
 
-          <ChartCard title="Recent Fraud Alerts" className="lg:col-span-2">
+          <ChartCard title="Peringatan Judi Terbaru" className="lg:col-span-2">
             <div className="space-y-4">
               {recentAlerts.map((alert) => (
                 <div 
@@ -287,7 +287,7 @@ export default function FraudDashboard() {
                     </div>
                     <div>
                       <p className="font-medium text-gray-900 dark:text-white">{alert.type}</p>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">Amount: {alert.amount}</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Jumlah: {alert.amount}</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
@@ -302,10 +302,10 @@ export default function FraudDashboard() {
           </ChartCard>
         </div>
 
-        {/* Detailed Transaction Timeline */}
-        <ChartCard title="Transaction Timeline (Amount vs Time)">
+        {/* Timeline Transaksi Detail */}
+        <ChartCard title="Timeline Transaksi (Jumlah vs Waktu)">
           <ResponsiveContainer width="100%" height={400}>
-            <LineChart data={fraudOverTimeData}>
+            <LineChart data={gamblingOverTimeData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="time" />
               <YAxis yAxisId="left" />
@@ -320,11 +320,11 @@ export default function FraudDashboard() {
               <Line 
                 yAxisId="left"
                 type="monotone" 
-                dataKey="fraudulent" 
+                dataKey="gambling" 
                 stroke="#EF4444" 
                 strokeWidth={3}
                 dot={{ fill: '#EF4444', strokeWidth: 2, r: 4 }}
-                name="Fraud Count"
+                name="Jumlah Judi"
               />
               <Line 
                 yAxisId="right"
@@ -333,7 +333,7 @@ export default function FraudDashboard() {
                 stroke="#3B82F6" 
                 strokeWidth={2}
                 dot={{ fill: '#3B82F6', strokeWidth: 2, r: 3 }}
-                name="Transaction Amount ($)"
+                name="Jumlah Transaksi (Rp)"
               />
             </LineChart>
           </ResponsiveContainer>
